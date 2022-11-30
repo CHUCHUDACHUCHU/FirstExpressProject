@@ -9,10 +9,6 @@ connect();
 //전역 미들웨어 생성
 app.use(express.json());
 
-app.get('/', (req, res) => {
-    res.send('localhost:3000/입니다.');
-});
-
 const router = require('./routes/index.js');
 app.use('/', router);
 
