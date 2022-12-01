@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
+require('dotenv').config();
+const { MONGODB_URI } = process.env;
 const connect = () => {
-    mongoose.connect('mongodb://127.0.0.1:27017/first_express_project').catch(err => console.log(err));
+    mongoose.connect(MONGODB_URI).then(() => console.log('몽고디비 연결완료')).catch(err => console.log(err));
 };
 
 mongoose.connection.on('error', err => {

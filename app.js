@@ -1,11 +1,11 @@
 const express = require('express');
 const app = express();
-const PORT = 3000;
+require('dotenv').config();
+const { PORT } = process.env;
 
 //몽고디비 연결
 const connect = require('./schemas')
 connect();
-
 //전역 미들웨어 생성
 app.use(express.json());
 

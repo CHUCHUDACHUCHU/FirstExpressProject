@@ -106,9 +106,47 @@ router.put('/:_postId', async (req, res) => {
         }
     }
 })
+/* router.put("/:_postId", async (req, res) => {
+    try {
+        let postId = req.params._postId;
 
+        const { password, title, content } = req.body;
 
+        if (!title || !content) {
+            return res.status(400).json({ msg: "데이터 형식이 올바르지 않습니다." });
+        }
 
+        const changePost = await Posts.findOne({ _id: postId });
+        console.log('hehe');
+
+        // 바꿀 게시글 정보를 못 찾을 경우
+        if (changePost == null || changePost.length === 0) {
+            return res.status(404).json({ msg: "게시글 조회에 실패하였습니다." });
+        }
+
+        // 비밀번호가 다를 경우
+        if (password !== changePost.password || password == undefined) {
+            return res.status(400).json({ msg: "비밀번호를 확인해주세요." });
+        }
+
+        // 비밀번호가 같을 경우에만 변경
+        if (password === changePost.password) {
+            await Posts.updateOne(
+                { _id: postId },
+                {
+                    $set: {
+                        // 변경 가능한 내용은 두가지만
+                        title: title,
+                        content: content,
+                    },
+                }
+            );
+            return res.status(200).json({ msg: "게시글을 수정하였습니다." });
+        }
+    } catch (error) {
+        return res.json({ msg: "데이터 형식이 올바르지 않습니다." });
+    }
+}); */
 
 //게시글 삭제 API
 router.delete('/:_postId', async (req, res) => {
